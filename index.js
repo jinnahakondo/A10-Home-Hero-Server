@@ -31,6 +31,13 @@ async function run() {
             const result = await servicesColl.find().toArray();
             res.send(result)
         })
+
+        // add services 
+        app.post('/services', async (req, res) => {
+            const newServices = req.body;
+            const result = await servicesColl.insertOne(newServices);
+            res.send(result)
+        })
         // </---------apis here--------->
 
         await client.db("admin").command({ ping: 1 });
